@@ -13,8 +13,17 @@ function ajustaTamanhoPalcoJogo(){
 ajustaTamanhoPalcoJogo()
 
 function posicaoRandomica(){
+    //remover o mosquito anterior caso exista
+    if(document.getElementById('mosquito')){
+        document.getElementById('mosquito').remove()
+    }
+
     var posicaoX = Math.floor(Math.random() * largura) - 90 //obs2
     var posicaoY = Math.floor(Math.random() * altura) - 90 //obs2
+    
+    //controle para que a posição nao seja menor que zero
+    posicaoX = posicaoX < 0 ? 0 : posicaoX
+    posicaoY = posicaoY < 0 ? 0 : posicaoY 
     
     console.log(posicaoX, posicaoY)
     
@@ -23,18 +32,48 @@ function posicaoRandomica(){
     mosquito.src = 'img/mosca.png'
 
     //definindo a classe padronizada em css
-    mosquito.className = 'mosquito1'
-
+    //mosquito.className = 'mosquito1'
+    mosquito.className = tamanhoAleatorio() + ' ' +  ladoAleatorio()
     //definindo o posicionamento
     mosquito.style.left = posicaoX + 'px'
     mosquito.style.top = posicaoY + 'px'
     mosquito.style.position = 'absolute' //obs3
+    mosquito.id = 'mosquito' //obs5
 
     //console.log(mosquito.style.left)
     document.body.appendChild(mosquito)
+
+    //console.log(tamanhoAleatorio())
+    //console.log(ladoAleatorio())
 }
 
+function tamanhoAleatorio(){
+    var classe = Math.floor(Math.random() * 3)
+    
 
+    switch(classe){
+        case 0:
+            return 'mosquito1'
+        case 1:
+            return 'mosquito2'
+        case 2:
+            return 'mosquito3'
+    }   
+}
+
+function ladoAleatorio(){
+    var classe = Math.floor(Math.random() * 2) //obs4
+
+    switch(classe){
+        case 0:
+            return 'ladoA'
+
+        case 1:
+            return 'ladoB'
+    }
+}
+
+/**sugestao: por os mosquitos com tempo ilimitado numa posicao e depois eles mudarem. */
 
 
 /**ob1 - capturando largura e algura com essas funçoes nativas */
@@ -42,3 +81,7 @@ function posicaoRandomica(){
 /**obs2 - desta maneira evita-se o estouro do tamanho da pagina, sempre vai aparecer dentro dos limites da mesma. */
 
 /**obs3 - muito importante essa difinicao de absolute senao nao vai funcionar. */
+
+/**obs 4 - como o random gera numeros de 0 a 1, essa multiplicação por 2 é para o arredondamento gerar números até no máximo o valor 2, inteiros. */
+
+/**obs5 - criado para depois executar a remocao do mosquito criado anteriormente */
