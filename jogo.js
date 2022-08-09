@@ -2,6 +2,7 @@
 
 var altura = 0
 var largura = 0
+var vidas = 1
 
 function ajustaTamanhoPalcoJogo(){
     altura = window.innerHeight //obs1
@@ -16,6 +17,15 @@ function posicaoRandomica(){
     //remover o mosquito anterior caso exista
     if(document.getElementById('mosquito')){
         document.getElementById('mosquito').remove()
+
+        if(vidas>3){
+            alert('interromper o jogo')
+        } else {
+            document.getElementById('v' + vidas).src = '/img/coracao_vazio.png'
+            vidas++
+        }
+
+       
     }
 
     var posicaoX = Math.floor(Math.random() * largura) - 90 //obs2
@@ -39,6 +49,10 @@ function posicaoRandomica(){
     mosquito.style.top = posicaoY + 'px'
     mosquito.style.position = 'absolute' //obs3
     mosquito.id = 'mosquito' //obs5
+    mosquito.onclick = function(){
+        //alert('elemento clicado a tempo')
+        this.remove()
+    }
 
     //console.log(mosquito.style.left)
     document.body.appendChild(mosquito)
@@ -73,7 +87,9 @@ function ladoAleatorio(){
     }
 }
 
-/**sugestao: por os mosquitos com tempo ilimitado numa posicao e depois eles mudarem. */
+/**sugestao: por os mosquitos com tempo ilimitado numa posicao e depois eles mudarem. Ja estava previso isso acontecer no projeto e eu nao sabia */
+
+/**sugestao: colocar pontuacao somatoria para cada vez que acertar o mosquito */
 
 
 /**ob1 - capturando largura e algura com essas funçoes nativas */
