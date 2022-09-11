@@ -3,6 +3,7 @@
 var altura = 0
 var largura = 0
 var vidas = 1
+var tempo = 15
 
 function ajustaTamanhoPalcoJogo(){
     altura = window.innerHeight //obs1
@@ -12,6 +13,19 @@ function ajustaTamanhoPalcoJogo(){
 }
 
 ajustaTamanhoPalcoJogo()
+
+var cronometro = setInterval(() => {
+    tempo -= 1
+
+    if(tempo < 0){ //caso o usuario vença
+        clearInterval(cronometro) //elimina a funcao da memoria da aplicacao
+        clearInterval(criaMosca) //mesmo do de cima, criaMosca foi declarado no app.html
+        //alert('vitoria')
+        window.location.href = 'vitoria.html'
+    } else {
+        document.getElementById('cronometro').innerHTML = tempo
+    }
+}, 1000);
 
 function posicaoRandomica(){
     //remover o mosquito anterior caso exista
@@ -92,6 +106,7 @@ function ladoAleatorio(){
 
 /**sugestao: colocar pontuacao somatoria para cada vez que acertar o mosquito */
 
+/**sugestao: escolha de cenario do jogo */
 
 /**ob1 - capturando largura e algura com essas funçoes nativas */
 
