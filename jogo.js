@@ -5,6 +5,25 @@ var largura = 0
 var vidas = 1
 var tempo = 15
 
+var criaMosquitoTempo = 1500 //obs7
+
+var nivel = window.location.search //obs6
+//alert(nivel.replace('?', ''))
+nivel = nivel.replace('?', '')
+
+if(nivel === 'normal'){
+
+    criaMosquitoTempo = 1500
+
+} else if(nivel === 'dificil'){
+    
+    criaMosquitoTempo = 1000
+
+} else if(nivel === 'chucknorris'){
+
+    criaMosquitoTempo = 750
+
+}
 function ajustaTamanhoPalcoJogo(){
     altura = window.innerHeight //obs1
     largura = window.innerWidth //obs1
@@ -117,3 +136,7 @@ function ladoAleatorio(){
 /**obs 4 - como o random gera numeros de 0 a 1, essa multiplicação por 2 é para o arredondamento gerar números até no máximo o valor 2, inteiros. */
 
 /**obs5 - criado para depois executar a remocao do mosquito criado anteriormente */
+
+/**obs6 - retorna os dados de parametro do endereco apartir da ? */
+
+/**obs7 - variavel criada depois para determinar o tempo ou nivel de dificuldade da velocidade de criacao do mosquito. Valor em milisseguntos 1000 = 1s */

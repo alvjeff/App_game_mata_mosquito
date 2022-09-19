@@ -23,19 +23,26 @@
             </div>
         </div>
 
+        <div class="row"><!--estrutrura criada depois-->
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div class="mb-2">
+                        <select name="" id="nivel">
+                            <option value="">-- Selecione um nível --</option>
+                            <option value="normal"> Normal </option>
+                            <option value="dificil"> Difícil </option>
+                            <option value="chucknorris"> Chuck Norris</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col">
-                <div class="mb-2">
-                    <select name="" id="menu">
-                        <option value="">-- Selecione um nível --</option>
-                        <option value="facil"> Fácil </option>
-                        <option value="dificil"> Diícil </option>
-                        <option value="chucknorris"> Chuck Norris</option>
-                    </select>
-                </div>
-               
+                             
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-danger btn-lg" onclick="escolherNivel()" > Iniciar jogo</button>
+                    <button type="button" class="btn btn-danger btn-lg" onclick="iniciarJogo()" > Iniciar jogo</button>
                 </div>
                
             </div>
@@ -43,9 +50,22 @@
     </div>
 
     <script>
-        function escolherNivel(){
-            alert(document.getElementById('menu').value)
+        function iniciarJogo(){
+            var nivel = document.getElementById('nivel').value
+
+            if( nivel === ''){
+                alert('Selecione um nível para iniciar o jogo')
+                return false //obs1
+            }
+
+            //alert(nivel)
+            window.location.href = 'app.html?' + nivel //obs2
         }
+
+
+        /*obs1 - serve para a lógica terminar aqui, ja que o jogo so deve continuar se tiver um nível selecionado*/
+
+        /*obs2 - redirecinando para a pagina do jogo e acrescentanto o nivel para transportar para ela como parametro apos a ?*/
     </script>
 </body>
 </html>
